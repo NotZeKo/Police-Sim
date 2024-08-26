@@ -1,0 +1,72 @@
+RED = "\033[31m"
+BLUE = "\033[34m"
+GREEN = "\033[32m"
+BRIGHT_GREEN = "\033[92m"
+YELLOW = "\033[33m"
+RESET = "\033[0m"
+
+
+#print(YELLOW + "In this game you are playing as a cop and have to make several decisions.\nSome goes good others don't.\nStart out by coming up with a name.")
+
+
+def get_name():
+    print(YELLOW + "In this game you are playing as a cop and have to make several decisions.\nSome goes good others don't.\nStart out by coming up with a name.\n")
+    name = input(YELLOW + "Write your name here: " + YELLOW)
+
+    # Return a greeting message
+    greeting = f"{YELLOW}You're name is {name}\n"
+
+    # Ask user if they want to finalize their choice
+    print(f"\nYour name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
+    namefinal = input(f"{GREEN}Write {BRIGHT_GREEN}Yes {GREEN}or {RED}No: {RESET}").strip().lower()
+
+    if namefinal == "yes":
+        return print(greeting)
+    else:
+        get_name()
+
+def get_partner_name():
+    print(YELLOW + "Lets get you a partner to help you out, what will you call him?")
+    name = input(YELLOW + "Write your partner's name here: " + YELLOW)
+
+    greeting = YELLOW + "Hi " + name + " I'm you're new partner\n"
+
+    print(f"\nYour partner's name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
+    namefinal = input(f"{GREEN}Write {BRIGHT_GREEN}Yes {GREEN}or {RED}No: {RESET}").strip().lower()
+
+    if namefinal == "yes":
+        return print(greeting)
+    else:
+        get_partner_name()
+
+
+def choose_mission():
+    print(f"{YELLOW}Now that we have sorted all of that out.\nLets get you out on a mission.\nThere isn't many to choose from in the beginning but you can work your way up.\n\n{GREEN}Let's see what we have.\n{RESET}1. {RED}Stolen Vehicle Recovery\n{RESET}2. {RED}Drug Bust Operation\n{RESET}3. {RED}Missing Person Investigation")
+    mission1 = "Stolen Vehicle Recovery"
+    mission2 = "Drug Bust Operation"
+    mission3 = "Missing Person Investigation"
+    while True:
+        mission = input(GREEN + "\nChoose from 1. 2. and 3: ")
+        try:
+            missionint = int(mission)
+        except ValueError:
+            print(RED + "Invalid input. Please enter a number." + RESET)
+            continue
+        if missionint in [1, 2, 3]:
+            break
+        else:
+            print(RED + "Please choose between 1. 2. and 3:")
+    if missionint == 1:
+        finalmission = "Stolen Vehicle Recovery"
+    elif missionint == 2:
+        finalmission = "Drug Bust Operation"
+    else:
+        finalmission = "Missing Person Investigation"
+
+    print(f"{YELLOW}You have chosen {RED}{finalmission}{YELLOW}\n")
+def main():
+    get_name()
+    get_partner_name()
+    choose_mission()
+
+main()
