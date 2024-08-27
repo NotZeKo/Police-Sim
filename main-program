@@ -1,24 +1,30 @@
+import time
+#Colors start
 RED = "\033[31m"
 BLUE = "\033[34m"
 GREEN = "\033[32m"
 BRIGHT_GREEN = "\033[92m"
+MOSS_GREEN = "\033[32m" 
 YELLOW = "\033[33m"
+BLACK = "\033[30m"
+PURPLE = "\033[35m"
+LIGHT_BLUE = "\033[94m"
 RESET = "\033[0m"
+#Colors end
 
 
-#print(YELLOW + "In this game you are playing as a cop and have to make several decisions.\nSome goes good others don't.\nStart out by coming up with a name.")
+finalnumber = 0
+reputation = 50
 
 
 def get_name():
     print(YELLOW + "In this game you are playing as a cop and have to make several decisions.\nSome goes good others don't.\nStart out by coming up with a name.\n")
-    name = input(YELLOW + "Write your name here: " + YELLOW)
+    name = input(YELLOW + "Write your name here: " + RESET)
 
-    # Return a greeting message
     greeting = f"{YELLOW}You're name is {name}\n"
 
-    # Ask user if they want to finalize their choice
-    print(f"\nYour name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
-    namefinal = input(f"{GREEN}Write {BRIGHT_GREEN}Yes {GREEN}or {RED}No: {RESET}").strip().lower()
+    print(f"\n{YELLOW}Your name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
+    namefinal = input(f"{YELLOW}Write {BRIGHT_GREEN}Yes {YELLOW}or {RED}No: {RESET}").strip().lower()
 
     if namefinal == "yes":
         return print(greeting)
@@ -27,12 +33,12 @@ def get_name():
 
 def get_partner_name():
     print(YELLOW + "Lets get you a partner to help you out, what will you call him?")
-    name = input(YELLOW + "Write your partner's name here: " + YELLOW)
+    name = input(YELLOW + "Write your partner's name here: " + RESET)
 
     greeting = YELLOW + "Hi " + name + " I'm you're new partner\n"
 
-    print(f"\nYour partner's name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
-    namefinal = input(f"{GREEN}Write {BRIGHT_GREEN}Yes {GREEN}or {RED}No: {RESET}").strip().lower()
+    print(f"\n{YELLOW}Your partner's name is {BLUE}{name}{YELLOW} Will you finalize your choice?")
+    namefinal = input(f"{YELLOW}Write {BRIGHT_GREEN}Yes {YELLOW}or {RED}No: {RESET}").strip().lower()
 
     if namefinal == "yes":
         return print(greeting)
@@ -41,10 +47,10 @@ def get_partner_name():
 
 
 def choose_mission():
-    print(f"{YELLOW}Now that we have sorted all of that out.\nLets get you out on a mission.\nThere isn't many to choose from in the beginning but you can work your way up.\n\n{GREEN}Let's see what we have.\n{RESET}1. {RED}Stolen Vehicle Recovery\n{RESET}2. {RED}Drug Bust Operation\n{RESET}3. {RED}Missing Person Investigation")
-    mission1 = "Stolen Vehicle Recovery"
-    mission2 = "Drug Bust Operation"
-    mission3 = "Missing Person Investigation"
+    print(f"{YELLOW}Now that we have sorted all of that out.\nLets get you out on a mission.\nThere isn't many to choose from in the beginning but you can work your way up.\n\n{GREEN}Let's see what we have.\n{RESET}1. {RED}Domestic Disturbance\n{RESET}2. {RED}Traffic Stop\n{RESET}3. {RED}Shoplifting Incident")
+    mission1 = "Domestic Disturbance"
+    mission2 = "Traffic Stop"
+    mission3 = "Shoplifting Incident"
     while True:
         mission = input(GREEN + "\nChoose from 1. 2. and 3: ")
         try:
@@ -57,16 +63,184 @@ def choose_mission():
         else:
             print(RED + "Please choose between 1. 2. and 3:")
     if missionint == 1:
-        finalmission = "Stolen Vehicle Recovery"
+        finalmission = "Domestic Disturbance"
     elif missionint == 2:
-        finalmission = "Drug Bust Operation"
+        finalmission = "Traffic Stop"
     else:
-        finalmission = "Missing Person Investigation"
+        finalmission = "Shoplifting Incident"
 
     print(f"{YELLOW}You have chosen {RED}{finalmission}{YELLOW}\n")
+
+    if missionint == 1:
+        domestic_disturbance()
+    elif missionint == 2:
+        traffic_stop()
+    else:
+        shoplifting()
+
+
+def domestic_disturbance():
+    print(f"{RED}Domestic Disturbance Briefing\n{BLUE}Codename: Calm in the Storm\n{YELLOW}You've been dispatched to a quiet suburban neighborhood where a domestic disturbance has been reported.\nNeighbors are concerned about the loud shouting and crashing sounds coming from one of the houses.\nAs you approach the scene, you notice that the front door is slightly ajar, and the atmosphere is tense.\nYour job is to enter the home, assess the situation, and de-escalate the conflict before it gets out of hand. ")
+    domestic_ready = input(f"\n{GREEN}When ready for objective type yes: ")
+    if domestic_ready.lower() == "yes":
+        print(f"\n{RED}Domestic Disturbance Objective\n{BLUE}Codename: Calm in the Storm\n{YELLOW}Your primary goal is to resolve the situation peacefully.\nou'll need to gather information, speak to the involved parties, and make decisions that could either defuse the tension or escalate the conflict.\nYour actions here will have consequences, so think carefully before you proceed.")
+    else:
+        domestic_disturbance()
+    disturbance_scene = input(f"\n{GREEN}Are you ready to move out? if yes type yes: ")
+    if disturbance_scene.lower() == "yes":
+        print(f"\n{RED}Arrival on scene{YELLOW}\nAs you arrive to the scene and step inside the house you find two individuals arguing heatedly in the living room, a man and a woman, both visibly upset.\nThe room is in disarray, with overturned furniture and broken items scattered around.\nThe neighbors are watching from their windows, worried about what might happen next. The couple's young child is hiding in a corner, scared and crying.")
+    else:
+        domestic_disturbance()
+    print(f"\n{RED}What will you do?\n{BLUE}Remember, You will gain or lose reputation depending on the outcome.\n{BLACK}1. Seperate the Parties\n2. Call for Backup\n3. Make an Arrest")
+    while True:
+        domestic_choiceint = input(GREEN + "\nChoose from 1. 2. and 3: ")
+        try:
+            domestic_choice = int(domestic_choiceint)
+        except ValueError:
+            print(RED + "Invalid input. Please enter a number." + RESET)
+            continue
+        if domestic_choice in [1, 2, 3]:
+            break
+        else:
+            print(RED + "Please choose between 1. 2. and 3:")  
+    #Seperate them start
+    if domestic_choice == 1:
+        print(f"{YELLOW}\nYou ask the man and woman to go into seperate rooms to calm down.\nNow you need to decide whom to speak to first.\n{BLACK}1. Speak to the Man\n2. Speak to the Woman\n")
+        while True:
+            man_womanint = input(f"{GREEN}\nChoose from 1. and 2. ")
+            try:
+                man_woman = int(man_womanint)
+            except ValueError:
+                print(f"{RED}Invalid input. Please enter a number.")
+                continue
+            if man_woman in [1, 2]:
+                break
+            else:
+                print(RED + "Please choose between 1. and 2. ")  
+        if man_woman == 1:
+            man_choice()
+        elif man_woman == 2:
+            woman_choice()
+
+    #Seperate them end
+
+    if domestic_choice == 2:
+        print("You chose 2")
+    if domestic_choice == 3:
+        print("You chose 3")
+
+
+def man_choice():
+    global finalnumber
+    print(f"{RED}\nYou approach the man.\n{YELLOW}Will you try to have a calm conversation? Or press for details?")
+    while True:
+        manint = input(f"{GREEN}\nChoose from 1. and 2. ")
+        try:
+            man = int(manint)
+        except ValueError:
+            print(f"{RED}Invalid input. Please enter a number.")
+            continue
+        if man in [1, 2]:
+            break
+        else:
+            print(RED + "Please choose between 1. and 2. ") 
+    if man == 1:
+        finalnumber += 1
+        print(f"{RED}\nThe man is visibly agitated, pacing back and forth.\nYou try talking to him\n{LIGHT_BLUE}Player:{YELLOW} Sir, I can see you’re upset. I’m here to help. Can you tell me what happened?\n{PURPLE}Man:{YELLOW} It’s just... she never listens! I’ve been working so hard, and the moment I ask for some peace, it turns into a fight.\n{LIGHT_BLUE}Player:{YELLOW}I understand that you’re frustrated. Let’s work together to figure this out. What exactly triggered the argument tonight?")
+        #time.sleep(12)
+        print(f"{RED}\nHe starts opening up\n{PURPLE}Man:{YELLOW}It was over something stupid, really. I came home late from work, exhausted. She started asking about some bills we haven't paid yet.\n{PURPLE}Man:{YELLOW} I just wanted to sit down and relax, but she kept pushing. I told her I needed a break, but she wouldn’t drop it.\n{LIGHT_BLUE}Player:{YELLOW} It sounds like it was a rough day for both of you. Do you think the stress from work and the bills made things boil over tonight?\n{PURPLE}Man:{YELLOW} Yeah, I guess. I shouldn’t have yelled, but everything just piled up, and I lost it.")
+        done = input(f"{YELLOW}\n\nHave you talked to the Woman? {GREEN}Yes {BLACK}/ {RED}No:{RESET} " ).strip().lower()
+    elif man == 2:
+        finalnumber += 2
+        print(f"{RED}\nThe man is visibly agitated, pacing back and forth.\nYou try pressing him for details.\n{LIGHT_BLUE}Player:{YELLOW} What happened to make things escalate like this? I need to know the specifics.\n{PURPLE}Man:{YELLOW} Why does it matter? She started it! Always nagging me about every little thing. I just lost my cool, alright?\n{LIGHT_BLUE}Player:{YELLOW} But what happened right before things got out of hand? Did she say something specific or was there a particular moment that pushed you over the edge?")
+        #time.sleep(9)
+        print(f"{RED}\nHe starts explaining\n{PURPLE}Man:{YELLOW} Alright, fine. I came home late, like I said. I was exhausted, and she started talking about the overdue bills.\n{PURPLE}Man:{YELLOW} I asked her to stop because I was at my breaking point. Then she started crying and it just made me lose it.\n{LIGHT_BLUE}Player:{YELLOW} Losing your cool doesn’t solve anything. Was there any physical altercation between the two of you?\n{PURPLE}Man:{YELLOW} No, no, I didn’t hit her. I might’ve slammed a door or thrown something, but I didn’t lay a hand on her.\n{LIGHT_BLUE}Player:{YELLOW} It’s important that you didn’t resort to physical violence. But the emotional impact is still significant. How do you plan to handle this situation moving forward?\n{PURPLE}Man:{YELLOW} I don't know man, it's not your problem.")
+        done = input(f"{YELLOW}\n\nHave you talked to the Woman? {GREEN}Yes {BLACK}/ {RED}No:{RESET} " ).strip().lower()
+    if done == "yes":
+        print(f"{RED}You have now heard both versions of the situation.\nIt's time to figure out what to do about it.")
+        domestic_disturbance_final()
+    elif done == "no":
+        print(f"{RED}\nYou then go talk to the woman")
+        woman_choice()
+
+
+def woman_choice():
+    global finalnumber
+    print(f"{RED}\nYou approach the woman.\n{YELLOW}Will you try to comfort her and listen Or ask direct questions?")
+    while True:
+        womanint = input(f"{GREEN}\nChoose from 1. and 2. ")
+        try:
+            woman = int(womanint)
+        except ValueError:
+            print(f"{RED}Invalid input. Please enter a number.")
+            continue
+        if woman in [1, 2]:
+            break
+        else:
+            print(RED + "Please choose between 1. and 2. ") 
+    if woman == 1:
+        finalnumber += 1
+        print(f"{RED}\n\nThe woman is sitting on the edge of the couch, holding back tears.\nYou try and calm her down.\n{LIGHT_BLUE}Player:{YELLOW} Ma’am, I can see this is really tough for you. Take a deep breath; you’re safe now. Can you tell me what’s been going on?\n{PURPLE}Woman:{YELLOW} It’s been building up for a while. He’s so stressed from work, but he just... he just snapped tonight. I didn’t mean to make him angry.\n{LIGHT_BLUE}Player:{YELLOW} It’s not your fault. No one should feel threatened in their own home. What happened right before things escalated?")
+        #time.sleep(12)
+        print(f"{RED}\nShe starts explaining what happened\n{PURPLE}Woman:{YELLOW} It started when he came home late again. I asked him about the bills because we're falling behind, and I’m worried.\n{PURPLE}Woman:{YELLOW} But he just... he snapped. He said he was tired and didn’t want to talk about it.\n{LIGHT_BLUE}Player:{YELLOW} So it was about the bills and the stress of the situation. Did you try to talk it out before things escalated?\n{PURPLE}Woman:{YELLOW} I did, but he just got angrier. I didn’t mean to push him, but I’m scared we’re going to lose the house if we don’t figure things out soon.")
+        womdone = input(f"{YELLOW}\n\nHave you talked to the Man? {GREEN}Yes {BLACK}/ {RED}No:{RESET} " ).strip().lower()
+    elif woman == 2:
+        finalnumber += 2
+        print(f"{RED}The woman is sitting on the edge of the couch, holding back tears.\nYou ask her some questions.\n{LIGHT_BLUE}Player:{YELLOW} Ma’am, I need to know exactly what happened tonight. Did he hurt you in any way?\n{PURPLE}Woman:{YELLOW} He didn’t hit me, but he was yelling, and he threw things. I’m just so scared for our son... he’s only five.\n{LIGHT_BLUE}Player:{YELLOW} I understand your concern. We need to make sure you and your child are safe. Has this happened before?")
+        #time.sleep(9)
+        print(f"{RED}\nShe thinks back on it\n{PURPLE}Woman:{YELLOW} Yes, it has. There have been times when he’s gotten really angry over things, but it usually doesn’t escalate like this.\n{LIGHT_BLUE}Player:{YELLOW} How often do these incidents occur, and what typically triggers them?\n{PURPLE}Woman:{YELLOW} It’s not always the same thing. Sometimes it’s work stress, other times it’s financial problems.\n{PURPLE}Woman:{YELLOW} It’s usually when he’s overwhelmed. I try to avoid bringing up sensitive topics when he’s already upset.\n{LIGHT_BLUE}Player:{YELLOW} I see. It sounds like there are ongoing issues that might need addressing. Have you considered seeking help or counseling to deal with these repeated arguments?\n{PURPLE}Woman:{YELLOW} We’ve talked about it, but we haven’t done anything yet. I think it might help, especially if he’s willing to try.")
+        womdone = input(f"{YELLOW}\n\nHave you talked to the Man? {GREEN}Yes {BLACK}/ {RED}No:{RESET} " ).strip().lower()
+    
+    if womdone == "yes":
+        print(f"{RED}You have now heard both versions of the situation.\nIt's time to figure out what to do about it.")
+        domestic_disturbance_final()
+    elif womdone == "no":
+        print(f"{RED}\nYou then go talk to the Man")
+        man_choice()
+
+def domestic_disturbance_final():
+    global reputation
+    global finalnumber
+    if finalnumber == 2:
+        print(f"{YELLOW}The calm conversation helps the man reflect on his behavior.\nWhile the comfort given to the woman reveals her deep distress and fears for her child.\nAlthough both parties express a willingess to work on their issues, the severity of the situation and the child's well-being necessitate immediate action.\n")
+        print(f"{RED}Will you.\n{BLACK}1. Take the child to child protective services?\n2. Arrange for urgent counseling sessions and a warning")
+        while True:
+            domestic_decisionint = input(f"{GREEN}\nChoose from 1. and 2. ")
+            try:
+                domestic_decision = int(domestic_decisionint)
+            except ValueError:
+                print(f"{RED}Invalid input. Please enter a number.")
+                continue
+            if domestic_decision in [1, 2]:
+                break
+            else:
+                print(RED + "Please choose between 1. and 2. ") 
+        if domestic_decision == 1:
+            print(f"{RED}\nYou take the child to child protection services")
+            print(f"{YELLOW}\nYou tell both the parents that there was nothing else you could do to insure the child's safety.\n{RED}You lose {BLUE}10 Reputation points{YELLOW}")
+            reputation -= 10
+            if reputation > 100:
+                print(f"{RED}you're {BLUE}Reputation{RED} is now lvl 2, with a total of {BLUE}{reputation} Reputation points")
+            elif reputation < 51:
+                print(f"{RED}You're {BLUE}Reputation{RED} is now lvl 1, with a total of {BLUE}{reputation} Reputation points")
+
+
+def traffic_stop():
+    print("This is traffic")
+
+def shoplifting():
+    print("This is shoplifting")
+
+
+
+
+
+
+
+
 def main():
     get_name()
     get_partner_name()
     choose_mission()
-
 main()
+#domestic_disturbance()
