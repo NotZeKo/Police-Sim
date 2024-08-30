@@ -1,4 +1,5 @@
 import time
+import domestic_disturbance
 #Colors start
 RED = "\033[31m"
 BLUE = "\033[34m"
@@ -83,7 +84,7 @@ def domestic_disturbance():
     print(f"{RED}Domestic Disturbance Briefing\n{BLUE}Codename: Calm in the Storm\n{YELLOW}You've been dispatched to a quiet suburban neighborhood where a domestic disturbance has been reported.\nNeighbors are concerned about the loud shouting and crashing sounds coming from one of the houses.\nAs you approach the scene, you notice that the front door is slightly ajar, and the atmosphere is tense.\nYour job is to enter the home, assess the situation, and de-escalate the conflict before it gets out of hand. ")
     domestic_ready = input(f"\n{GREEN}When ready for objective type yes: ")
     if domestic_ready.lower() == "yes":
-        print(f"\n{RED}Domestic Disturbance Objective\n{BLUE}Codename: Calm in the Storm\n{YELLOW}Your primary goal is to resolve the situation peacefully.\nou'll need to gather information, speak to the involved parties, and make decisions that could either defuse the tension or escalate the conflict.\nYour actions here will have consequences, so think carefully before you proceed.")
+        print(f"\n{RED}Domestic Disturbance Objective\n{BLUE}Codename: Calm in the Storm\n{YELLOW}Your primary goal is to resolve the situation peacefully.\nYou'll need to gather information, speak to the involved parties, and make decisions that could either defuse the tension or escalate the conflict.\nYour actions here will have consequences, so think carefully before you proceed.")
     else:
         domestic_disturbance()
     disturbance_scene = input(f"\n{GREEN}Are you ready to move out? if yes type yes: ")
@@ -205,24 +206,68 @@ def domestic_disturbance_final():
         print(f"{YELLOW}The calm conversation helps the man reflect on his behavior.\nWhile the comfort given to the woman reveals her deep distress and fears for her child.\nAlthough both parties express a willingess to work on their issues, the severity of the situation and the child's well-being necessitate immediate action.\n")
         print(f"{RED}Will you.\n{BLACK}1. Take the child to child protective services?\n2. Arrange for urgent counseling sessions and a warning")
         while True:
-            domestic_decisionint = input(f"{GREEN}\nChoose from 1. and 2. ")
+            domestic_decisionint2 = input(f"{GREEN}\nChoose from 1. and 2. ")
             try:
-                domestic_decision = int(domestic_decisionint)
+                domestic_decision2 = int(domestic_decisionint2)
             except ValueError:
                 print(f"{RED}Invalid input. Please enter a number.")
                 continue
-            if domestic_decision in [1, 2]:
+            if domestic_decision2 in [1, 2]:
                 break
             else:
                 print(RED + "Please choose between 1. and 2. ") 
-        if domestic_decision == 1:
+        if domestic_decision2 == 1:
             print(f"{RED}\nYou take the child to child protection services")
-            print(f"{YELLOW}\nYou tell both the parents that there was nothing else you could do to insure the child's safety.\n{RED}You lose {BLUE}10 Reputation points{YELLOW}")
+            print(f"{YELLOW}\nYou tell both the parents that there was nothing else you could do to insure the child's safety.\n{RED}You lose {BLUE}10 Reputation points{YELLOW}\n")
             reputation -= 10
             if reputation > 100:
-                print(f"{RED}you're {BLUE}Reputation{RED} is now lvl 2, with a total of {BLUE}{reputation} Reputation points")
+                print(f"{RED}you're {BLUE}Reputation{RED} is lvl 2, with a total of {BLUE}{reputation} Reputation points")
             elif reputation < 51:
-                print(f"{RED}You're {BLUE}Reputation{RED} is now lvl 1, with a total of {BLUE}{reputation} Reputation points")
+                print(f"{RED}You're {BLUE}Reputation{RED} is lvl 1, with a total of {BLUE}{reputation} Reputation points")
+        if domestic_decision2 == 2:
+            print(f"{RED}\nYou arrange for urgent counseling sessions.")
+            print(f"{YELLOW}\nYou warn them that next time you are gonna need to take the child\n\nYou gain {BLUE}10 Reputation points")
+            reputation += 10
+            if reputation > 100:
+                print(f"{RED}you're {BLUE}Reputation{RED} is lvl 2, with a total of {BLUE}{reputation} Reputation points")
+            elif reputation < 51:
+                print(f"{RED}You're {BLUE}Reputation{RED} is lvl 1, with a total of {BLUE}{reputation} Reputation points")
+    if finalnumber == 3:
+        print(f"{YELLOW}\nThe pressing conversations with them exposes deeper problems that could end up harming the child\nYou are left with 2 options.")
+        print(f"{RED}\nWill you.\n{BLACK}1. Take the child to child protective services?\n2. Arrest the man for endangering the child and his wife. ")
+        while True:
+            domestic_decisionint3 = input(f"{GREEN}\nChoose from 1. and 2. ")
+            try:
+                domestic_decision3 = int(domestic_decisionint3)
+            except ValueError:
+                print(f"{RED}Invalid input. Please enter a number.")
+                continue
+            if domestic_decision3 in [1, 2]:
+                break
+            else:
+                print(RED + "Please choose between 1. and 2. ") 
+        if domestic_decision3 == 1:
+            print(f"{RED}\nYou take the child to child protection services")
+            print(f"{YELLOW}\nYou tell both the parents that for the safety of the child you are gonna need to get it to a safe place which is not here.\n{RED}You gain {BLUE}20 Reputation points{YELLOW}\n")
+            reputation += 20
+            if reputation > 100:
+                print(f"{RED}you're {BLUE}Reputation{RED} is lvl 2, with a total of {BLUE}{reputation} Reputation points")
+            elif reputation < 51:
+                print(f"{RED}You're {BLUE}Reputation{RED} is lvl 1, with a total of {BLUE}{reputation} Reputation points")
+        if domestic_decision3 == 2:
+            print(f"{RED}\nArrest the man for endangering the child and his wife.")
+            print(f'{YELLOW}You place the man under arrest, but he resist as he Pulls away, raising his voice "I’m not going anywhere! You can’t take me from my family!')
+            print(f"{YELLOW}You call for backup as the situation escalates. After a brief struggle, the man is subdued and taken into custody.\nYou ensure the safety of the woman and child, placing them in protective care while filing a report detailing the arrest and the man’s resistance.\n\n{RED}You gain {BLUE}15 Reputation points{YELLOW}\n")
+            reputation += 15
+            if reputation > 100:
+                print(f"{RED}you're {BLUE}Reputation{RED} is lvl 2, with a total of {BLUE}{reputation} Reputation points")
+            elif reputation < 51:
+                print(f"{RED}You're {BLUE}Reputation{RED} is lvl 1, with a total of {BLUE}{reputation} Reputation points")
+    if finalnumber == 4:
+        print(f"{YELLOW}")
+            
+
+            
 
 
 def traffic_stop():
